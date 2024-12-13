@@ -10,7 +10,7 @@
       Filename: js04.js
  */
 
-
+"use strict";
 /* global variables tracking status of each form section */
 let acresComplete = true;
 let cropsComplete = true;
@@ -95,8 +95,8 @@ function testFormCompleteness() {
 
 /* generate tractor recommendation based on user selections */
 function createRecommendation() {
-   if (acresBox.value >= 5000) { // 5000 acres or less, no crop test needed
-      if (monthsBox.value <= 10) { // 10+ months of farming per year
+   if (acresBox.value <= 5000) { // Changed logic to '5000 acres or less'
+      if (monthsBox.value >= 10) { // Changed logic to '10+ months of farming per year'
          messageHeadElement.innerHTML = "E3250";
          messageElement.innerHTML = E3250Desc;        
       } else { // 9 or fewer months per year
@@ -118,10 +118,10 @@ function createRecommendation() {
       }
    }
    
-   if (document.getElementById("E85").checked) { // add suffix to model name based on fuel choice
+if (document.getElementById("E85").checked) { // add suffix to model name based on fuel choice
       messageHeadElement.innerHTML += "E";
    } else if (document.getElementById("biodiesel").checked) {
-      messageHeadElement.innerHTML = "B";
+      messageHeadElement.innerHTML += "B"; // Corrected to concatenate "B"
    } else {
       messageHeadElement.innerHTML += "D";  
    }
